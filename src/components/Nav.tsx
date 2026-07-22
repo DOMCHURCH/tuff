@@ -2,9 +2,9 @@ import { useEffect, useState } from 'react'
 import MagneticButton from './MagneticButton'
 
 const LINKS = [
-  { label: 'Studio', href: '#ethos' },
-  { label: 'Disciplines', href: '#disciplines' },
+  { label: 'Studio', href: '#studio' },
   { label: 'Work', href: '#work' },
+  { label: 'Capabilities', href: '#capabilities' },
   { label: 'Contact', href: '#contact' },
 ]
 

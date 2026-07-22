@@ -340,6 +340,153 @@ body {
   }
 }
 
+/* ------------------------------------------------------------------ *
+ * Legibility scrims — keep type crisp over the bright film
+ * ------------------------------------------------------------------ */
+.display,
+.headline,
+.lede,
+.body,
+.work-title {
+  text-shadow: 0 1px 34px rgba(0, 0, 0, 0.35);
+}
+.chapter--hero::before,
+.chapter--left::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background: linear-gradient(
+    102deg,
+    rgba(5, 6, 10, 0.62) 0%,
+    rgba(5, 6, 10, 0.14) 46%,
+    transparent 72%
+  );
+}
+.chapter--hero > *,
+.chapter--left > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* ------------------------------------------------------------------ *
+ * Selected work grid
+ * ------------------------------------------------------------------ */
+.full {
+  width: 100%;
+  max-width: none;
+}
+.chapter--flow {
+  justify-content: flex-start;
+  padding-top: 20vh;
+  padding-bottom: 16vh;
+}
+.section-head {
+  max-width: 42rem;
+  margin-bottom: 3.5rem;
+}
+
+.work-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 3.5rem 3rem;
+  width: 100%;
+  max-width: 1160px;
+}
+.work-grid > :nth-child(even) {
+  margin-top: 4.5rem; /* editorial stagger, transform-free (GSAP owns transform) */
+}
+
+.work-card {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+}
+.work-thumb {
+  position: relative;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  border-radius: 14px;
+  border: 1px solid var(--hair);
+  background: #0b0d13;
+}
+.work-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform: scale(1.02);
+  filter: saturate(1.02) brightness(0.9);
+  transition: transform 0.7s var(--ease), filter 0.5s var(--ease);
+}
+.work-card:hover .work-thumb img {
+  transform: scale(1.07);
+  filter: saturate(1.08) brightness(1.02);
+}
+.work-arrow {
+  position: absolute;
+  top: 0.9rem;
+  right: 0.9rem;
+  width: 2.4rem;
+  height: 2.4rem;
+  border-radius: 999px;
+  display: grid;
+  place-items: center;
+  background: rgba(8, 9, 13, 0.5);
+  backdrop-filter: blur(6px);
+  color: var(--ink);
+  font-size: 1rem;
+  opacity: 0;
+  transform: translateY(-6px);
+  transition: opacity 0.22s var(--ease), transform 0.22s var(--ease);
+}
+.work-card:hover .work-arrow {
+  opacity: 1;
+  transform: translateY(0);
+}
+.work-meta {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  column-gap: 0.9rem;
+  row-gap: 0.15rem;
+  align-items: baseline;
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--hair);
+}
+.work-index {
+  grid-row: 1;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  color: var(--ink-faint);
+}
+.work-title {
+  grid-column: 2;
+  grid-row: 1;
+  margin: 0;
+  font-family: 'Instrument Serif', Georgia, serif;
+  font-weight: 400;
+  font-size: 1.7rem;
+  color: var(--ink);
+  transition: color 0.2s var(--ease);
+}
+.work-card:hover .work-title {
+  color: var(--warm);
+}
+.work-year {
+  grid-column: 3;
+  grid-row: 1;
+  font-size: 0.8rem;
+  color: var(--ink-faint);
+}
+.work-cat {
+  grid-column: 2;
+  grid-row: 2;
+  font-size: 0.85rem;
+  color: var(--ink-dim);
+}
+
 @media (max-width: 768px) {
   .disciplines {
     grid-template-columns: 1fr;
@@ -350,6 +497,13 @@ body {
   .footer-meta {
     flex-direction: column;
     gap: 0.4rem;
+  }
+  .work-grid {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+  .work-grid > :nth-child(even) {
+    margin-top: 0;
   }
 }
 

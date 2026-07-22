@@ -1,14 +1,21 @@
 import { useLayoutEffect, useRef } from 'react'
 import { gsap } from 'gsap'
 import Chapter from './Chapter'
+import Work from './Work'
 import MagneticButton from './MagneticButton'
 
-const DISCIPLINES = ['Direction', 'Motion', 'Identity', 'Film', 'Sound', 'Story', 'Light', 'Form']
+const CAPABILITIES = [
+  'Direction',
+  'Brand Identity',
+  'Motion',
+  'Film',
+  'Art Direction',
+  'Campaigns',
+]
 
 export default function Chapters() {
   const hero = useRef<HTMLElement>(null)
 
-  // Hero animates on load (not scroll) — a composed, unhurried entrance.
   useLayoutEffect(() => {
     const el = hero.current
     if (!el) return
@@ -30,7 +37,7 @@ export default function Chapters() {
 
   return (
     <>
-      {/* HERO — text hugs the frame so the prism owns the centre */}
+      {/* HERO */}
       <section ref={hero} className="chapter chapter--hero">
         <div className="hero-top">
           <p className="eyebrow" data-hero>
@@ -44,15 +51,15 @@ export default function Chapters() {
         </div>
         <div className="hero-bottom">
           <p className="lede" data-hero>
-            Prisma is a global collective of directors, filmmakers and designers crafting work that
-            refracts the ordinary into something luminous.
+            Prisma is an independent studio for directors, filmmakers and designers — making work
+            that refracts the ordinary into something luminous.
           </p>
           <div className="hero-cta" data-hero>
             <MagneticButton href="#work" variant="primary">
-              Enter the studio
+              View work
             </MagneticButton>
-            <MagneticButton href="#disciplines" variant="ghost">
-              Watch showreel
+            <MagneticButton href="#contact" variant="ghost">
+              Get in touch
             </MagneticButton>
           </div>
         </div>
@@ -62,30 +69,42 @@ export default function Chapters() {
         </div>
       </section>
 
-      {/* 01 — ETHOS */}
-      <Chapter id="ethos" align="left">
+      {/* 01 — MANIFESTO */}
+      <Chapter id="studio" align="left">
         <p className="eyebrow" data-animate>
-          01 — Ethos
+          01 — Studio
         </p>
         <h2 className="headline" data-animate>
-          Every frame is a decision.
+          A small studio with an obsessive eye for motion and light.
         </h2>
         <p className="body" data-animate>
-          We treat motion as language. Nothing is decorative; every cut, every glint of dispersion
-          earns its place. The result feels inevitable — the quiet signature of work made by hand.
+          We partner with a handful of clients a year, going deep rather than wide. Every frame is a
+          decision; nothing is decorative. The result feels inevitable — the quiet signature of work
+          made by hand.
         </p>
       </Chapter>
 
-      {/* 02 — DISCIPLINES */}
-      <Chapter id="disciplines" align="left">
+      {/* 02 — SELECTED WORK */}
+      <Chapter id="work" align="left" className="chapter--flow">
+        <div className="full">
+          <div className="section-head" data-animate>
+            <p className="eyebrow">02 — Selected work</p>
+            <h2 className="headline">Recent chapters.</h2>
+          </div>
+          <Work />
+        </div>
+      </Chapter>
+
+      {/* 03 — CAPABILITIES */}
+      <Chapter id="capabilities" align="left">
         <p className="eyebrow" data-animate>
-          02 — Disciplines
+          03 — Capabilities
         </p>
         <h2 className="headline" data-animate>
-          Eight ways we shape light.
+          What we shape.
         </h2>
         <ul className="disciplines" data-animate>
-          {DISCIPLINES.map((d, i) => (
+          {CAPABILITIES.map((d, i) => (
             <li key={d}>
               <span className="num">{String(i + 1).padStart(2, '0')}</span>
               {d}
@@ -94,21 +113,7 @@ export default function Chapters() {
         </ul>
       </Chapter>
 
-      {/* 03 — WORK */}
-      <Chapter id="work" align="left">
-        <p className="eyebrow" data-animate>
-          03 — Selected work
-        </p>
-        <h2 className="headline" data-animate>
-          Made for brands who refuse the ordinary.
-        </h2>
-        <p className="body" data-animate>
-          Campaigns, films and identities for people who understand that the way a thing moves is
-          the way it is remembered.
-        </p>
-      </Chapter>
-
-      {/* CONTACT — solid panel closes over the stage */}
+      {/* CONTACT */}
       <Chapter id="contact" align="center" solid>
         <p className="eyebrow" data-animate>
           Let&rsquo;s talk
